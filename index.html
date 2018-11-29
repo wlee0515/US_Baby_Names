@@ -61,35 +61,8 @@
       };
     }
 
-    function createChart_XYear_YCount(iDivContainerID, iTitle) {
-      var chart = new CanvasJS.Chart(iDivContainerID, {
-        title: {
-          text: iTitle
-        },
-        axisX: {
-          title: "Year",
-          valueFormatString: "YYYY"
-        },
-        axisY: {
-          title: "Population Count",
-        },
-        toolTip: {
-          shared: true
-        },
-        legend: {
-          cursor: "pointer",
-          verticalAlign: "top",
-          horizontalAlign: "center",
-          dockInsidePlotArea: true,
-          itemclick: toogleDataSeries
-        },
-        data: []
-      });
-      gChartList.push(chart);
-      return chart;
-    }
+    function createChart_XYear_YCount(iDivContainerID, iTitle, iDataset, iXAxisIndex, iYAxisIndex) {
 
-    function updateChartDataSet(iChart, iTitle, iDataset, iXAxisIndex, iYAxisIndex) {
       wDataSet = [];
       for (var i = 0; i < iDataset.length; ++i) {
         if (iXAxisIndex != i) {
@@ -116,9 +89,32 @@
         }
       }
 
-      iChart.title.text = iTitle;
-      iChart.data = wDataSet;
+      var chart = new CanvasJS.Chart(iDivContainerID, {
+        title: {
+          text: iTitle
+        },
+        axisX: {
+          title: "Year",
+          valueFormatString: "YYYY"
+        },
+        axisY: {
+          title: "Population Count",
+        },
+        toolTip: {
+          shared: true
+        },
+        legend: {
+          cursor: "pointer",
+          verticalAlign: "top",
+          horizontalAlign: "center",
+          dockInsidePlotArea: true,
+          itemclick: toogleDataSeries
+        },
+        data: wDataSet
+      });
       iChart.render();
+      gChartList.push(chart);
+      return chart;
     }
 
     function toogleDataSeries(e) {
@@ -136,8 +132,7 @@
     window.onload = function () {
       requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
         wLineList = parseCSVtoDataset(iCSVString);
-        wChart = createChart_XYear_YCount(chartContainer, "");
-        updateChartDataSet(wChart, "USA Social Security Issued per Year", wLineList, 1, [2, 5]);
+        wChart = createChart_XYear_YCount(chartContainer, "USA Social Security Issued per Year", wLineList, 1, [2, 5]);
       })
 
     }
