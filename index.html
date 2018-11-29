@@ -7,6 +7,8 @@
     var gUSAPopulationDB = null;
     var gStateGeoGraphicInfoDB = null;
     var gHistoricalNameCountDB = null;
+    var gNameList = null;
+    var gWorkingNameDB = null;
 
     function requestfile(iLocalFilePath, oCallback) {
       const Http = new XMLHttpRequest();
@@ -154,6 +156,10 @@
 
       requestfile("./db_generated/historicalnamecount.csv", function (iCSVString) {
         gHistoricalNameCountDB = parseCSVtoDataset(iCSVString);
+      })
+      
+      requestfile("./db_generated/namelist.csv", function (iCSVString) {
+        gNameList = parseCSVtoDataset(iCSVString);
       })
     }
 
