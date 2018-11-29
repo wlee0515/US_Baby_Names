@@ -65,7 +65,7 @@
         else {
           gWorkingNameDB = parseCSVtoDataset(iCSVString);
           gWorkingName = gWorkingNameDB[0].mData[0]
-          wChart = createChart_XYear_YCount("NamePopulationChart", "USA Population with the name " + gWorkingName , gWorkingNameDB, 1, [2]);
+          wChart = createChart_XYear_YCount("NamePopulationChart", "USA Population with the name " + gWorkingName , gWorkingNameDB, 1, [2], false);
         }
       })
     }
@@ -80,26 +80,38 @@
       };
     }
 
-    function createChart_XYear_YCount(iDivContainerID, iTitle, iDataset, iXAxisIndex, iYAxisIndices) {
+    function checkPlotData(iIndexTocheck, iXAxisIndex, iYAxisIndices, iNeg=false){
+       if (iXAxisIndex == iIndexTocheck) {
+         return false;
+       }
+      
+       if (0 == iYAxisIndices.length){
+         if (True == iNeg) {
+           return true;
+          }
+         return false;
+       }
+      
+       for (var k = 0; k < iYAxisIndices.length; ++k) {
+          if (iYAxisIndices[k] == iIndexTocheck) { 
+              if (True == iNeg) {
+                return false;
+          }
+       return true;
+          }
+       }
+       
+       if (True == iNeg) {
+           return true;
+          }
+       return false;
+    }
+    
+    function createChart_XYear_YCount(iDivContainerID, iTitle, iDataset, iXAxisIndex, iYAxisIndices, iNeg) {
 
       wDataSet = [];
       for (var i = 0; i < iDataset.length; ++i) {
-        if (iXAxisIndex != i) {
-          var wSkip = true;
-          if (0 == iYAxisIndices.length) {
-            wSkip = false;
-          }
-          else {
-            for (var k = 0; k < iYAxisIndices.length; ++k) {
-              if (iYAxisIndices[k] == i) {
-                wSkip = false;
-                break;
-              }
-            }
-
-          }
-
-          if (true == wSkip) {
+          if (false == checkPlotData(i, iXAxisIndex, iYAxisIndices, iNeg)) {
             continue;
           }
           wPointList = [];
@@ -109,8 +121,6 @@
             wPointList.push({ x: new Date(parseInt(wXData[k]),00,01), y: parseInt(wYData[k]) });
           }
           wDataSet.push(createLineObject(iDataset[i].mName, wPointList));
-
-        }
       }
 
       var wChart = new CanvasJS.Chart(iDivContainerID, {
@@ -156,12 +166,38 @@
         gChartList.render();
       }
     }
+/*
+    function createColumnChart( iDivContainerID, iDataset,  iXAxisIndex, iYAxisIndices, iXAxisValue) {
+        var chart = new CanvasJS.Chart("chartContainer",
+    {
+      title:{
+        text: "Top Oil Reserves"
+      },
+      data: [
 
+      {
+        dataPoints: [
+        { x: 1, y: 297571, label: "Venezuela"},
+        { x: 2, y: 267017,  label: "Saudi" },
+        { x: 3, y: 175200,  label: "Canada"},
+        { x: 4, y: 154580,  label: "Iran"},
+        { x: 5, y: 116000,  label: "Russia"},
+        { x: 6, y: 97800, label: "UAE"},
+        { x: 7, y: 20682,  label: "US"},
+        { x: 8, y: 20350,  label: "China"}
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+    }
+    */
 
     window.onload = function () {
       requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
         gUSAPopulationDB = parseCSVtoDataset(iCSVString);
-        wChart = createChart_XYear_YCount("PopulationChart", "USA Social Security Number Issued per Year", gUSAPopulationDB, 1, [2, 3, 4, 5]);
+        wChart = createChart_XYear_YCount("PopulationChart", "USA Social Security Number Issued per Year", gUSAPopulationDB, 1, [2, 3, 4, 5], false);
       })
 
       requestfile("./db_generated/stategeographyinfo.csv", function (iCSVString) {
