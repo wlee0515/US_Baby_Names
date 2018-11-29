@@ -97,7 +97,7 @@ def main():
             print("Step 6: Saving State Population data to Output Directory")
             StateInfo.saveStatePopulationData(getOutputStatePopulationDirectory(), getOutputUSAPopulationSummaryCSV())
             print("Step 6: Complete")
-        if 70 == wStepID:
+        if 7 == wStepID:
             print("Step 7: Saving Name Population data to Output Directory")
             StateInfo.saveNamePopulationData(getOutputNamePopulationDirectory(), getOutputHistoricalNameCountCSV())
             print("Step 7: Complete")
