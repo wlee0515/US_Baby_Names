@@ -57,7 +57,7 @@
     }
 
     function getNameDatabase(name){
-      var wFileName = "./db_generated/namepopulation" + name + ".csv"
+      var wFileName = "./db_generated/namepopulation/" + name.toLowerCase() + ".csv"
       requestfile(wFileName, function (iCSVString) {
         if ("" == iCSVString){
           gWorkingNameDB = null;
