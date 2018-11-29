@@ -7,14 +7,17 @@
 
     function requestfile(iLocalFilePath, oCallback) {
       const Http = new XMLHttpRequest();
-      //const url = iLocalFilePath;
-      const url = './db_generated/USAPopulationSummary.csv';
+      const url = iLocalFilePath;
+      // const url = './db_generated/USAPopulationSummary.csv';
       Http.open("GET", url);
       Http.send();
       Http.onreadystatechange = (e) => {
+        
         dom = document.getElementById("textDisplay")
         dom.innerText = Http.responseText
-        oCallback(Http.responseText);
+        if ("" != Http.responseText) {
+          oCallback(Http.responseText);
+        }
       }
     }
 
