@@ -8,6 +8,7 @@
     var gStateGeoGraphicInfoDB = null;
     var gHistoricalNameCountDB = null;
     var gNameList = null;
+    var gWorkingName = ""
     var gWorkingNameDB = null;
 
     function requestfile(iLocalFilePath, oCallback) {
@@ -55,6 +56,19 @@
       return wLineList
     }
 
+    function getNameDatabase(name){
+      var wFileName = "./db_generated/namepopulation" + name + ".csv"
+      requestfile(wFileName, function (iCSVString) {
+        if ("" == iCSVString){
+          gWorkingNameDB = null;
+        }
+        else {
+          gWorkingNameDB = parseCSVtoDataset(iCSVString);
+          gWorkingName = gWorkingNameDB[0].mData[0]
+          wChart = createChart_XYear_YCount("NamePopulationChart", "USA Population with the name " + gWorkingName , gWorkingNameDB, 1, [2]);
+        }
+      })
+    }
 
     function createLineObject(iLineName, iData) {
       return {
@@ -147,7 +161,7 @@
     window.onload = function () {
       requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
         gUSAPopulationDB = parseCSVtoDataset(iCSVString);
-        wChart = createChart_XYear_YCount("chartContainer", "USA Social Security Number Issued per Year", gUSAPopulationDB, 1, [2, 3, 4, 5]);
+        wChart = createChart_XYear_YCount("PopulationChart", "USA Social Security Number Issued per Year", gUSAPopulationDB, 1, [2, 3, 4, 5]);
       })
 
       requestfile("./db_generated/stategeographyinfo.csv", function (iCSVString) {
@@ -161,13 +175,18 @@
       requestfile("./db_generated/namelist.csv", function (iCSVString) {
         gNameList = parseCSVtoDataset(iCSVString);
       })
+      
+      getNameDatabase("Wilson");
+      
+      gWorkingNameDB
     }
 
   </script>
 </head>
 <body>
   <textarea id="textDisplay"></textarea>
-  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+  <div id="PopulationChart" style="height: 370px; width: 100%;"></div>
+  <div id="NamePopulationChart" style="height: 370px; width: 100%;"></div>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
