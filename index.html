@@ -89,7 +89,7 @@
         }
       }
 
-      var chart = new CanvasJS.Chart(iDivContainerID, {
+      var wChart = new CanvasJS.Chart(iDivContainerID, {
         title: {
           text: iTitle
         },
@@ -112,7 +112,7 @@
         },
         data: wDataSet
       });
-      iChart.render();
+      wChart.render();
       gChartList.push(chart);
       return chart;
     }
