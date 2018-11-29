@@ -151,12 +151,6 @@ class StateInfo:
                 wListToDelete.append(wName)
         for wName in wListToDelete:
             gStateInformationDictionary.pop(wName)
-        wSortedList = {}
-        for wName in sorted(gStateInformationDictionary.keys()):
-            wSortedList[wName] = gStateInformationDictionary[wName]
-        gStateInformationDictionary = wSortedList
-
-        wProcessedNameList = wSortedList
 
     def extractPopulationTable(inputDirectory):
         # List of files to process
