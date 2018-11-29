@@ -98,7 +98,7 @@ def main():
             print("Step {0}: Complete".format(wStepID))
         if 6 == wStepID:
             print("Step {0}: Saving Name List to Output Directory".format(wStepID))
-            StateInfo.saveNameList(getOutputStatePopulationDirectory(), getOutputNameListCSV())
+            StateInfo.saveNameList(getOutputNameListCSV())
             print("Step {0}: Complete".format(wStepID))
         if 7 == wStepID:
             print("Step {0}: Saving State Population data to Output Directory".format(wStepID))
