@@ -1,0 +1,19 @@
+directory "namesbystate"
+https://www.ssa.gov/OACT/babynames/limits.html
+Headers:
+State,Sex,Data_Year,Name,Name_Count
+
+Data in file "stateinfo/stateabbreviations.csv"
+https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations
+Header:
+Name,status_of_region,ISO,ANSI-US,ANSI-00,USPS,USCG,GPO,AP,Other abbreviations
+
+Data in file "stateinfo/statelocation.csv"
+https://inkplant.com/code/state-latitudes-longitudes
+Headers:
+State,Latitude(deg),Longitude(deg)
+
+Data in file "stateinfo/statearea.csv"
+https://www.enchantedlearning.com/usa/states/area.shtml
+Headers:
+State,Area_Ranking,Area_(sq-mil),Area_(sq-km)
