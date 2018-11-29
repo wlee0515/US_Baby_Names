@@ -136,7 +136,7 @@
     window.onload = function () {
       requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
         wLineList = parseCSVtoDataset(iCSVString);
-        wChart = createChart_XYear_YCount(chartContainer, "USA Social Security Issued per Year", wLineList, 1, [2, 5]);
+        wChart = createChart_XYear_YCount(chartContainer, "USA Social Security Issued per Year", wLineList, 1, [2,3,4,5]);
       })
 
     }
