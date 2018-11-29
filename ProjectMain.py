@@ -5,11 +5,11 @@ from CEBD1160FP import StateInfo
 
 
 def getInputDirectory():
-    return "DataSet_Original"
+    return "dataset_original"
 
 
 def getOutputDirectory():
-    return "DataSet_Generated"
+    return "dataset_generated"
 
 
 def getOutputStatePopulationDirectory():
