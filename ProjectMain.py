@@ -48,6 +48,9 @@ def getOutputHistoricalNameCountCSV():
     return os.path.join(getOutputDirectory(), "historicalnamecount.csv")
 
 
+def getOutputNameListCSV():
+    return os.path.join(getOutputDirectory(), "namelist.csv")
+
 def createAllDirectories():
     # check if temporary folder exits
     if False == os.path.exists(getOutputDirectory()):
@@ -72,35 +75,39 @@ def main():
         wStepID += 1
 
         if 1 == wStepID:
-            print("Step 1: Creating Output Directory")
+            print("Step {0}: Creating Output Directory".format(wStepID))
             createAllDirectories()
-            print("Step 1: Complete")
+            print("Step {0}: Complete".format(wStepID))
         if 2 == wStepID:
-            print("Step 2: Parsing State Information")
+            print("Step {0}: Parsing State Information".format(wStepID))
             StateInfo.parseAbbreviationCSV(getStateAbbreviationCSV())
             StateInfo.parseLocationCSV(getStateLocationCSV())
             StateInfo.parseAreaCSV(getStateAreaCSV())
-            print("Step 2: Complete")
+            print("Step {0}: Complete".format(wStepID))
         if 3 == wStepID:
-            print("Step 3: Sort and Purge Missing Abbreviations")
+            print("Step {0}: Sort and Purge Missing Abbreviations".format(wStepID))
             StateInfo.sortAndPurgeMissingAbbreviation()
-            print("Step 3: Complete")
+            print("Step {0}: Complete".format(wStepID))
         if 4 == wStepID:
-            print("Step 4: Saving Summarized State Geography Data to Output")
+            print("Step {0}: Saving Summarized State Geography Data to Output".format(wStepID))
             StateInfo.saveSummarizedStateGeographyDataData(getOutputStateGeographyInfoCSV())
-            print("Step 4: Complete")
+            print("Step {0}: Complete".format(wStepID))
         if 5 == wStepID:
-            print("Step 5: Extracting Population data from data set")
+            print("Step {0}: Extracting Population data from data set".format(wStepID))
             StateInfo.extractPopulationTable(getNameByStateCSVDirectory())
-            print("Step 5: Complete")
+            print("Step {0}: Complete".format(wStepID))
         if 6 == wStepID:
-            print("Step 6: Saving State Population data to Output Directory")
-            StateInfo.saveStatePopulationData(getOutputStatePopulationDirectory(), getOutputUSAPopulationSummaryCSV())
-            print("Step 6: Complete")
+            print("Step {0}: Saving Name List to Output Directory".format(wStepID))
+            StateInfo.saveNameList(getOutputStatePopulationDirectory(), getOutputNameListCSV())
+            print("Step {0}: Complete".format(wStepID))
         if 7 == wStepID:
-            print("Step 7: Saving Name Population data to Output Directory")
+            print("Step {0}: Saving State Population data to Output Directory".format(wStepID))
+            StateInfo.saveStatePopulationData(getOutputStatePopulationDirectory(), getOutputUSAPopulationSummaryCSV())
+            print("Step {0}: Complete".format(wStepID))
+        if 8 == wStepID:
+            print("Step {0}: Saving Name Population data to Output Directory".format(wStepID))
             StateInfo.saveNamePopulationData(getOutputNamePopulationDirectory(), getOutputHistoricalNameCountCSV())
-            print("Step 7: Complete")
+            print("Step {0}: Complete".format(wStepID))
 
 if __name__ == "__main__":
     main()
