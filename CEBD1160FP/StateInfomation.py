@@ -2,6 +2,11 @@ from os import walk
 from os import path
 
 
+class NameData:
+    def __init__(self):
+        self.Sex = {}
+        self.Count = 0
+
 class Population:
     def __init__(self):
         self.Total = 0
@@ -18,7 +23,7 @@ class StateInformation:
         self.Area = 0.0
         self.PopulationTable = {}
 
-
+gNameList = {}
 gTotalUSPopulation = {}
 gStateInformationDictionary = {}
 
@@ -57,6 +62,21 @@ class StateInfo:
         StateInfo.addStateName(name)
         gStateInformationDictionary[name].Area = area
 
+    def setNameList(name, sex, count):
+        wNameData = gNameList[name] = NameData()
+        wNameData.Count = count
+        wNameData.Sex[sex] = 1
+            
+    def addToNameList(name, sex, count):
+        if name not in gNameList:
+            wNameData = gNameList[name] = NameData()
+            wNameData.Count = count
+            wNameData.Sex[sex] = 1
+        else:
+            wNameData = gNameList[name]
+            wNameData.Count = count
+            wNameData.Sex[sex] = 1
+            
     def setTotalPopulation(year, population, malecount, femalecount, name=""):
         if year not in gTotalUSPopulation:
             gTotalUSPopulation[year] = Population()
@@ -191,6 +211,34 @@ class StateInfo:
                             StateInfo.addToTotalPopulation( int(wData[2]), int(wData[4]), wMaleCount, wFemaleCount,  wData[3])
                 wFileHandler.close()
 
+    def saveNameList(ouputfilename)
+        print("Saving Name List")
+        wFileHandler = open(outputfilename, 'w')
+        if 'w' == wFileHandler.mode:
+            wDataLine = ""
+            wDataLine += "{0}".format("Name")
+            wDataLine += ",{0}".format("Sex")
+            wDataLine += ",{0}".format("Count")
+            wFileHandler.write("{0}\n".format(wDataLine))
+            for wName in sorted(gNameList.keys()):
+                wData = gNameList[wName]
+                wDataLine = ""
+                wDataLine += "{0}".format(wName)
+                if "M" in wData.Sex:
+                    if "F" in wData.Sex:
+                        wDataLine += ",{0}".format("U")
+                    else:
+                        wDataLine += ",{0}".format("M")
+                else:
+                    if "F" in wData.Sex:
+                        wDataLine += ",{0}".format("F")
+                    else:
+                        wDataLine += ",{0}".format("NA")
+                wDataLine += ",{0}".format(wData.Count)
+                wFileHandler.write("{0}\n".format(wDataLine))
+        wFileHandler.close()
+    
+    
     def saveSummarizedStateGeographyDataData(outputfilename):
         print("Saving USA state geography data")
         wFileHandler = open(outputfilename, 'w')
