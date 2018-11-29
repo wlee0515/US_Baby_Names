@@ -209,9 +209,10 @@ class StateInfo:
                                 wFemaleCount = int(wData[4])
                             StateInfo.addStatePopulation(wState.Name, int(wData[2]), int(wData[4]), wMaleCount, wFemaleCount, wData[3])
                             StateInfo.addToTotalPopulation( int(wData[2]), int(wData[4]), wMaleCount, wFemaleCount,  wData[3])
+                            StateInfo.addToNameList(wData[3], wData[1], int(wData[4]))
                 wFileHandler.close()
 
-    def saveNameList(ouputfilename)
+    def saveNameList(ouputfilename):
         print("Saving Name List")
         wFileHandler = open(outputfilename, 'w')
         if 'w' == wFileHandler.mode:
