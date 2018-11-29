@@ -167,7 +167,35 @@
       }
     }
 /*
-    function createColumnChart( iDivContainerID, iDataset,  iXAxisIndex, iYAxisIndices, iXAxisValue) {
+    function createColumnChart( iDivContainerID, iDataset,  iXAxisIndex, iYAxisIndices, iNeg, iXAxisValue) {
+    
+      var wDatasetIndex = -i;
+      for (var i = 0; i < iDataset[iXAxisIndex].mData.length; ++i) {
+        if ( iXAxisValue == iDataset[iXAxisIndex].mData.length)
+        {
+          wDatasetIndex = i;
+        }
+      }
+      
+      wDataSet = [];
+      if (-1 != wDatasetIndex) {
+      
+      }
+      
+      wDataSet = [];
+      for (var i = 0; i < iDataset.length; ++i) {
+          if (false == checkPlotData(i, iXAxisIndex, iYAxisIndices, iNeg)) {
+            continue;
+          }
+          wPointList = [];
+          wXData = iDataset[iXAxisIndex].mData;
+          wYData = iDataset[i].mData;
+          for (var k = 0; k < wYData.length; ++k) {
+            wPointList.push({ x: new Date(parseInt(wXData[k]),00,01), y: parseInt(wYData[k]) });
+          }
+          wDataSet.push(createLineObject(iDataset[i].mName, wPointList));
+      }
+    
         var chart = new CanvasJS.Chart("chartContainer",
     {
       title:{
