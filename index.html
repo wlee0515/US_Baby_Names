@@ -85,7 +85,6 @@
         },
         data: []
       });
-      chart.render();
       gChartList.push(chart);
       return chart;
     }
@@ -106,13 +105,13 @@
             continue;
           }
           wPointList = [];
-          wXData = iLineList[iXAxisIndex].mData;
-          wYData = iLineList[i].mData;
+          wXData = iDataset[iXAxisIndex].mData;
+          wYData = iDataset[i].mData;
           for (var k = 0; k < wYData.length; ++k) {
             if (iXAxisIndex)
               wPointList.push({ x: new Date(wXData[l], 01, 01), y: wYData[i] });
           }
-          wDataSet.push(createLineObject(iLineList.mName, wPointList));
+          wDataSet.push(createLineObject(iDataset.mName, wPointList));
 
         }
       }
