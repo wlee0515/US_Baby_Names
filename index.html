@@ -58,8 +58,7 @@
         showInLegend: true,
         axisYType: "primary",
         showInLegend: true,
-        markerSize: 1,
-        yValueFormatString: "#,###",
+        markerSize: 0,
 
 
         dataPoints: iData
@@ -78,7 +77,7 @@
               break;
             }
           }
-
+          
           if (true == wSkip) {
             continue;
           }
@@ -86,7 +85,7 @@
           wXData = iDataset[iXAxisIndex].mData;
           wYData = iDataset[i].mData;
           for (var k = 0; k < wYData.length; ++k) {
-              wPointList.push({ x: new Date(wXData[k], 01, 01), y: wYData[k] });
+            wPointList.push({ x: new Date(wXData[k], 01, 01), y: parseInt(wYData[k]) });
           }
           wDataSet.push(createLineObject(iDataset[i].mName, wPointList));
 
