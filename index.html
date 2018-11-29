@@ -4,6 +4,9 @@
   <script>
 
     var gChartList = [];
+    var gUSAPopulationDB = null;
+    var gStateGeoGraphicInfoDB = null;
+    var gHistoricalNameCountDB = null;
 
     function requestfile(iLocalFilePath, oCallback) {
       const Http = new XMLHttpRequest();
@@ -12,7 +15,7 @@
       Http.open("GET", url);
       Http.send();
       Http.onreadystatechange = (e) => {
-        
+
         dom = document.getElementById("textDisplay")
         dom.innerText = Http.responseText
         if ("" != Http.responseText) {
@@ -61,19 +64,25 @@
       };
     }
 
-    function createChart_XYear_YCount(iDivContainerID, iTitle, iDataset, iXAxisIndex, iYAxisIndex) {
+    function createChart_XYear_YCount(iDivContainerID, iTitle, iDataset, iXAxisIndex, iYAxisIndices) {
 
       wDataSet = [];
       for (var i = 0; i < iDataset.length; ++i) {
         if (iXAxisIndex != i) {
           var wSkip = true;
-          for (var k = 0; k < iYAxisIndex.length; ++k) {
-            if (iYAxisIndex[k] == i) {
-              wSkip = false;
-              break;
-            }
+          if (0 == iYAxisIndices.length) {
+            wSkip = false;
           }
-          
+          else {
+            for (var k = 0; k < iYAxisIndices.length; ++k) {
+              if (iYAxisIndices[k] == i) {
+                wSkip = false;
+                break;
+              }
+            }
+
+          }
+
           if (true == wSkip) {
             continue;
           }
@@ -135,10 +144,17 @@
 
     window.onload = function () {
       requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
-        wLineList = parseCSVtoDataset(iCSVString);
-        wChart = createChart_XYear_YCount(chartContainer, "USA Social Security Issued per Year", wLineList, 1, [2,3,4,5]);
+        gUSAPopulationDB = parseCSVtoDataset(iCSVString);
+        wChart = createChart_XYear_YCount("chartContainer", "USA Social Security Issued per Year", gUSAPopulationDB, 1, [2, 3, 4, 5]);
       })
 
+      requestfile("./db_generated/stategeographyinfo.csv", function (iCSVString) {
+        gStateGeoGraphicInfoDB = parseCSVtoDataset(iCSVString);
+      })
+
+      requestfile("./db_generated/historicalnamecount.csv", function (iCSVString) {
+        gHistoricalNameCountDB = parseCSVtoDataset(iCSVString);
+      })
     }
 
   </script>

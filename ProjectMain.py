@@ -82,8 +82,8 @@ def main():
             StateInfo.parseAreaCSV(getStateAreaCSV())
             print("Step 2: Complete")
         if 3 == wStepID:
-            print("Step 3: Purging Missing Abbreviations")
-            StateInfo.purgeMissingAbbreviation()
+            print("Step 3: Sort and Purge Missing Abbreviations")
+            StateInfo.sortAndPurgeMissingAbbreviation()
             print("Step 3: Complete")
         if 4 == wStepID:
             print("Step 4: Saving Summarized State Geography Data to Output")

@@ -144,13 +144,19 @@ class StateInfo:
                     StateInfo.setStateArea(wData[0], float(wData[3]))
         wFileHandler.close()
 
-    def purgeMissingAbbreviation():
+    def sortAndPurgeMissingAbbreviation():
         wListToDelete=[]
         for wName, wState in gStateInformationDictionary.items():
             if "" == wState.Abbreviation:
                 wListToDelete.append(wName)
         for wName in wListToDelete:
             gStateInformationDictionary.pop(wName)
+        wSortedList = {}
+        for wName in sorted(gStateInformationDictionary.keys()):
+            wSortedList[wName] = gStateInformationDictionary[wName]
+        gStateInformationDictionary = wSortedList
+
+        wProcessedNameList = wSortedList
 
     def extractPopulationTable(inputDirectory):
         # List of files to process
@@ -304,6 +310,13 @@ class StateInfo:
                             wDataLine += ",{0}".format(wNameCountAtYearAtState)
                         wFileHandler.write("{0}\n".format(wDataLine))
                 wFileHandler.close()
+
+
+        wSortedList = {}
+        for wName in sorted(wProcessedNameList.keys()):
+            wSortedList[wName] = wProcessedNameList[wName]
+
+        wProcessedNameList = wSortedList
 
         print("Saving Historical Count Summary File")
         wFileHandler = open(outputHistoricalCountFileName, 'w')
