@@ -7,7 +7,7 @@
 
     function requestfile(iLocalFilePath, oCallback) {
       const Http = new XMLHttpRequest();
-      const url = "./" + iLocalFilePath;
+      const url = iLocalFilePath;
       Http.open("GET", url);
       Http.send();
       Http.onreadystatechange = (e) => {
@@ -129,7 +129,7 @@
 
 
     window.onload = function () {
-      requestfile("db_generated/USAPopulationSummary.csv", function (iCSVString) {
+      requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
         wLineList = parseCSVtoDataset(iCSVString);
         wChart = createChart_XYear_YCount(chartContainer, "");
         updateChartDataSet(wChart, "USA Social Security Issued per Year", wLineList, 1, [2, 5]);
