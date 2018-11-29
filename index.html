@@ -56,7 +56,8 @@
         type: "line",
         name: iLineName,
         showInLegend: true,
-        markerSize: 2,
+        markerSize: 0,
+        xValueFormatString: "YYYY",
         dataPoints: iData
       };
     }
@@ -93,12 +94,16 @@
           text: iTitle
         },
         axisX: {
-          title: "Year",
-          valueFormatString: "YYYY"
+          valueFormatString: "YYYY",
+          crosshair: {
+            enabled: true,
+            snapToDataPoint: true
+          }
         },
         axisY: {
-          title: "Population Count",
-          includeZero: false
+          crosshair: {
+            enabled: true
+          }
         },
         toolTip: {
           shared: true
