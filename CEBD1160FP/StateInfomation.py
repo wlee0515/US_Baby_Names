@@ -317,7 +317,7 @@ class StateInfo:
                 if wName in wProcessedNameList:
                     continue
                 wHistoricalCount = wProcessedNameList[wName] = {}
-                wFilename = outputDirectory + "/" + wName + ".csv"
+                wFilename = outputDirectory + "/" + wName.lower() + ".csv"
                 wFileHandler = open(wFilename, 'w')
                 if 'w' == wFileHandler.mode:
                     wHistoricalCount["USA"] = 0
