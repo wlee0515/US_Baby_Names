@@ -84,7 +84,7 @@
             if (iXAxisIndex)
               wPointList.push({ x: new Date(wXData[k], 01, 01), y: wYData[k] });
           }
-          wDataSet.push(createLineObject(iDataset.mName, wPointList));
+          wDataSet.push(createLineObject(iDataset[i].mName, wPointList));
 
         }
       }
