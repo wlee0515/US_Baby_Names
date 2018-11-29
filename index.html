@@ -109,7 +109,7 @@
           wYData = iDataset[i].mData;
           for (var k = 0; k < wYData.length; ++k) {
             if (iXAxisIndex)
-              wPointList.push({ x: new Date(wXData[l], 01, 01), y: wYData[i] });
+              wPointList.push({ x: new Date(wXData[k], 01, 01), y: wYData[k] });
           }
           wDataSet.push(createLineObject(iDataset.mName, wPointList));
 
