@@ -18,8 +18,8 @@
       Http.send();
       Http.onreadystatechange = (e) => {
 
-        dom = document.getElementById("textDisplay")
-        dom.innerText = Http.responseText
+        //dom = document.getElementById("textDisplay")
+        //dom.innerText = Http.responseText
         if ("" != Http.responseText) {
           oCallback(Http.responseText);
         }
