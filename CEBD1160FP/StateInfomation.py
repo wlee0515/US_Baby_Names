@@ -212,7 +212,7 @@ class StateInfo:
                             StateInfo.addToNameList(wData[3], wData[1], int(wData[4]))
                 wFileHandler.close()
 
-    def saveNameList(ouputfilename):
+    def saveNameList(outputfilename):
         print("Saving Name List")
         wFileHandler = open(outputfilename, 'w')
         if 'w' == wFileHandler.mode:
