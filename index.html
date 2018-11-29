@@ -7,7 +7,7 @@
 
     function requestfile(iLocalFilePath, oCallback) {
       const Http = new XMLHttpRequest();
-      const url = "./" + iLocalFilePath;
+      const url = "" + iLocalFilePath;
       Http.open("GET", url);
       Http.send();
       Http.onreadystatechange = (e) => {
@@ -87,7 +87,7 @@
 
     function updateChartDataSet(iChart, iTitle, iDataset, iXAxisIndex, iYAxisIndex) {
       wDataSet = [];
-      for (var i = 0; i < iLineList.length; ++i) {
+      for (var i = 0; i < iDataset.length; ++i) {
         if (iXAxisIndex != i)
         {
           var wSkip = true;
