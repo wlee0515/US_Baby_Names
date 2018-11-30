@@ -257,7 +257,6 @@
             else if  ("unisex_names" == iGenderFilterID){
               gCurrentGenderFilter = "U";
             }
-            updateFiltered();
           }
         }
       }
@@ -268,7 +267,6 @@
           if (true == wDOM.checked){
             wLetter = iLetterFilterID.charAt(iLetterFilterID.length - 1);
             gCurrentLetterFilter = wLetter.toUpperCase();
-            updateFiltered();
           }
         }
       }
@@ -524,7 +522,9 @@
         <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Y')" id="names_Y">Y
         <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Z')" id="names_Z">Z
       </form>
-
+      <form>
+        <input type="button" onclick="updateFiltered" value="Go"/>
+      </form>
       <div id="NameSearchResult"></div>
     </div>
   </div>
