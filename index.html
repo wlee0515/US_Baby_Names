@@ -13,7 +13,8 @@
 
     var gNameList = null;
     var gSortedNameList = null;
-
+    var gCurrentGenderFilter = null;
+    var gCurrentLetterFilter = null;
 
     function requestfile(iLocalFilePath, oCallback) {
       const Http = new XMLHttpRequest();
@@ -230,6 +231,51 @@
         return wChart;
       }
 
+      function updateFiltered() {
+        if ((null == gCurrentGenderFilter) || (null == gCurrentLetterFilter)){
+          return;
+        }
+
+        wDOM = document.getElementById("NameSearchResult");
+        if (null != wDOM){
+          wDOM.innerHTML = "";
+          wFilterNameList = gSortedNameList[gCurrentGenderFilter][gCurrentLetterFilter];
+
+          for(var i=0; i < wFilterNameList.length; ++i){
+            wDOM.innerHTML +="<span onclick=\"getNameDatabase('" + wFilterNameList[i] + "')\">" + wFilterNameList[i] + "</span>";
+          }
+        }
+      }
+
+      function genderFilterChange(iGenderFilterID) {
+        wDOM = document.getElementById(iGenderFilterID);
+        if (null != wDOM){
+          if (true == wDOM.checked){
+            if ("male_names" == iGenderFilterID){
+              gCurrentGenderFilter = "M";
+            }
+            else if  ("female_names" == iGenderFilterID){
+              gCurrentGenderFilter = "F";
+            }
+            else if  ("unisex_names" == iGenderFilterID){
+              gCurrentGenderFilter = "U";
+            }
+            updateFiltered();
+          }
+        }
+      }
+
+      function genderFilterChange(iLetterFilterID){
+        wDOM = document.getElementById(iLetterFilterID);
+        if (null != wDOM){
+          if (true == wDOM.checked){
+            wLetter = iLetterFilterID.charAt(iLetterFilterID.length - 2);
+            gCurrentLetterFilter = wLetter.toUpperCase();
+            updateFiltered();
+          }
+        }
+      } 
+      
 
       window.onload = function () {
         requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
