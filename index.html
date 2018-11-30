@@ -242,7 +242,7 @@
           wFilterNameList = gSortedNameList[gCurrentGenderFilter][gCurrentLetterFilter];
 
           for(var i=0; i < wFilterNameList.length; ++i){
-            wDOM.innerHTML +="<span onclick=\"getNameDatabase('" + wFilterNameList[i] + "')\">" + wFilterNameList[i] + "</span>";
+            wDOM.innerHTML +="<span class='selectableName' onclick=\"getNameDatabase('" + wFilterNameList[i] + "')\">" + wFilterNameList[i] + "</span>";
           }
         }
       }
@@ -333,6 +333,13 @@
     height:300px;
     width :100%;
     overflow-y:scroll;
+  }
+
+  .selectableName{
+    cursor:pointer;
+    padding:5px;
+    display :inline-block;
+    float:left;
   }
 </style>
 <body>
