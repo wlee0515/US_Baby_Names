@@ -202,7 +202,7 @@
             continue;
           }
 
-          wDataSet.push( { x: i, y: parseInt(iDataset[i].mData[wDatasetIndex]), label: iDataset[i].mName});
+          wDataSet.push( { y: parseInt(iDataset[i].mData[wDatasetIndex]), label: iDataset[i].mName});
         }
 
         var wChart = new CanvasJS.Chart(iDivContainerID, 
@@ -210,14 +210,23 @@
           title:{
             text: iTitle
           },
+          axisX:{
+            interval: 1
+          },
+          axisY2:{
+            interlacedColor: "rgba(1,77,101,.2)",
+            gridColor: "rgba(1,77,101,.1)",
+            title: "Number of Companies"
+          },
           
           axisY: {
             title: "Name Count"
           },
           data: [{        
-            type: "column",  
-            showInLegend: true, 
-            legendMarkerColor: "grey",
+            type: "bar",
+            name: "companies",
+            axisYType: "secondary",
+            color: "#014D65",
             dataPoints: wDataSet
             }
           ]
