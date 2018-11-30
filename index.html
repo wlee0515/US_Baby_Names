@@ -269,7 +269,7 @@
         wDOM = document.getElementById(iLetterFilterID);
         if (null != wDOM){
           if (true == wDOM.checked){
-            wLetter = iLetterFilterID.charAt(iLetterFilterID.length - 2);
+            wLetter = iLetterFilterID.charAt(iLetterFilterID.length - 1);
             gCurrentLetterFilter = wLetter.toUpperCase();
             updateFiltered();
           }
