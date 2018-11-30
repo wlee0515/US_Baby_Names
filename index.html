@@ -381,6 +381,13 @@
     text-align: center
   }
 
+  .NameSections{
+    width: 100%;
+    padding:5px;
+    display :block;
+    float:none;
+  }
+
   .displaychart{
     height: 250px;
     width: 100%;
@@ -429,15 +436,16 @@
       <input type="range" min="0" max="1" value="0" class="slider" id="StatePopulationYearSelection" style="width: 90%; height:20px;" />
       <p>Move Slider to Change Year</p>
     </div>
-    <div>
+      -->
+    <div class="NameSections">
       <h2>Name Distribution in USA</h2>
       <div class="displaychart" id="NamePopulationChart"></div>
       <div class="displaychart" id="NamePopulationChartPerState"></div>
       <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
       <p>Move Slider to Change Year</p>
     </div>
-    -->
-    <div>
+    
+    <div class="NameSections">
       <p>Click on below Names to see disctibution</p>
       <div class="ListColumn">
         <h3>Top 10 USA Male Names</h3>
@@ -454,7 +462,7 @@
         <div id="TopUnisexNamesList"></div>
       </div>
     </div>
-    <div>
+    <div class="NameSections">
       <h3>USA Name List</h3>
       <form>
         <input type="radio" name="name_filter_gender" id="male_names" onchange="genderFilterChange('male_names')">Male Names
