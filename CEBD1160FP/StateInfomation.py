@@ -74,7 +74,7 @@ class StateInfo:
             wNameData.Sex[sex] = 1
         else:
             wNameData = gNameList[name]
-            wNameData.Count = count
+            wNameData.Count += count
             wNameData.Sex[sex] = 1
             
     def setTotalPopulation(year, population, malecount, femalecount, name=""):
