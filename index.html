@@ -291,15 +291,17 @@
       function increaseSlider(iSliderId, count){
         wDOM = document.getElementById(iSliderId);
         if (null != wDOM){
-          var wNewValue = wDOM.value;
+          var wNewValue = parseInt(wDOM.value);
+          var wMin = parseInt(wDOM.min);
+          var wMax = parseInt(wDOM.max);
           wNewValue += count;
-          if (wNewValue < wDOM.min)
+          if (wNewValue < wMin)_
           {
-            wNewValue = wDOM.min;
+            wNewValue = wMin;
           }
-          if (wNewValue > wDOM.max)
+          if (wNewValue > wMax)
           {
-            wNewValue = wDOM.max;
+            wNewValue = wMax;
           }
 
           wDOM.value = wNewValue;
@@ -444,6 +446,10 @@
     float:none;
   }
   
+  #NameSlider{
+    width:95%;
+    vertical-align:middle;
+  }
 </style>
 <body>
 
@@ -461,9 +467,11 @@
       <h2>Name Distribution in USA</h2>
       <div class="displaychart" id="NamePopulationChart"></div>
       <div class="displaychart" id="NamePopulationChartPerState"></div>
-      <input type="button" value="-" onclick="increaseSlider('NameYearSelection', -1)"/>
-      <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
-      <input type="button" value="+" onclick="increaseSlider('NameYearSelection', 1)" />
+      <div id="NameSlider">
+        <input type="button" value="-" onclick="increaseSlider('NameYearSelection', -1)" />
+        <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
+        <input type="button" value="+" onclick="increaseSlider('NameYearSelection', 1)" />
+      </div>
       <p>Move Slider to Change Year</p>
     </div>
     
