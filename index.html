@@ -3,11 +3,10 @@
 <head>
   <script>
 
-    var gChartList = [];
-    var gUSAPopulationDB = null;
-    var gStateGeoGraphicInfoDB = null;
-    var gHistoricalNameCountDB = null;
-    
+    //var gUSAPopulationDB = null;
+    //var gStateGeoGraphicInfoDB = null;
+    //var gHistoricalNameCountDB = null;
+
     var gWorkingName = ""
     var gWorkingNameDB = null;
 
@@ -75,7 +74,7 @@
           wSliderDOM = document.getElementById("NameYearSelection");
 
           if (null != wSliderDOM){
-            wSliderDOM.min =  parseInt(gWorkingNameDB[1].mData[1]);
+            wSliderDOM.min =  parseInt(gWorkingNameDB[1].mData[0]);
             wSliderDOM.max =  parseInt(gWorkingNameDB[1].mData[gWorkingNameDB[1].mData.length - 1]);
             wSliderDOM.onchange = function () {
 
@@ -175,7 +174,6 @@
           data: wDataSet
         });
         wChart.render();
-        gChartList.push(wChart);
         return wChart;
       }
 
@@ -227,7 +225,6 @@
         });
 
         wChart.render()
-        gChartList.push(wChart);
         return wChart;
       }
 
@@ -274,8 +271,8 @@
             updateFiltered();
           }
         }
-      } 
-      
+      }
+
       function printTopTen(iDivContainerID, iList) {
 
         wDOM = document.getElementById(iDivContainerID);
@@ -346,9 +343,9 @@
           wTopTenMale = [];
           wTopTenFemale = [];
           wTopTenUnisex = [];
-          
+
           for(var i = 0; i < gNameList[0].mData.length; ++i){
-          
+
             if((null != gNameList[0].mData[i])  && (null != gNameList[1].mData[i]) && (null != gNameList[2].mData[i]))
             {
               wList = null;
@@ -400,55 +397,55 @@
   .content {
     max-width: 800px;
     margin: auto;
-    text-align: center
+    text-align: center;
   }
 
-  .NameSections{
+  .NameSections {
     width: 100%;
-    padding:5px;
-    display :block;
-    float:none;
+    padding: 5px;
+    display: block;
+    float: none;
   }
 
-  .displaychart{
+  .displaychart {
     height: 250px;
     width: 100%;
   }
 
-  #NameSearchResult{
-    height:300px;
-    width :100%;
-    overflow-y:scroll;
+  #NameSearchResult {
+    height: 300px;
+    width: 100%;
+    overflow-y: scroll;
   }
 
-  .selectableName{
-    cursor:pointer;
-    padding:5px;
-    display :inline-block;
-    float:left;
+  .selectableName {
+    cursor: pointer;
+    padding: 5px;
+    display: inline-block;
+    float: left;
   }
 
-  form{
-    padding:2px;
+  form {
+    padding: 2px;
   }
 
-  .ListColumn{
-    width:30%;
-    padding:5px;
-    display :inline-block;
-    float:none;
+  .ListColumn {
+    width: 30%;
+    padding: 5px;
+    display: inline-block;
+    float: none;
   }
 
-  .selectableTopTenName{
-    cursor:pointer;
-    padding:5px;
-    display :block;
-    float:none;
+  .selectableTopTenName {
+    cursor: pointer;
+    padding: 5px;
+    display: block;
+    float: none;
   }
-  
-  #NameSlider{
-    width:95%;
-    vertical-align:middle;
+
+  #NameSlider {
+    width: 95%;
+    vertical-align: middle;
   }
 </style>
 <body>
@@ -474,7 +471,7 @@
       </div>
       <p>Move Slider to Change Year</p>
     </div>
-    
+
     <div class="NameSections">
       <p>Click on below Names to see disctibution</p>
       <div class="ListColumn">
@@ -500,32 +497,32 @@
         <input type="radio" name="name_filter_gender" id="unisex_names" onchange="genderFilterChange('unisex_names')">Unisex Names
       </form>
       <form>
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_A')" id="names_A">A
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_B')" id="names_B">B
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_C')" id="names_C">C
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_D')" id="names_D">D
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_E')" id="names_E">E
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_F')" id="names_F">F
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_G')" id="names_G">G
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_H')" id="names_H">H
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_I')" id="names_I">I
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_J')" id="names_J">J
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_K')" id="names_K">K
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_L')" id="names_L">L
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_M')" id="names_M">M
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_N')" id="names_N">N
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_O')" id="names_O">O
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_P')" id="names_P">P
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_Q')" id="names_Q">Q
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_R')" id="names_R">R
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_S')" id="names_S">S
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_T')" id="names_T">T
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_U')" id="names_U">U
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_V')" id="names_V">V
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_W')" id="names_W">W
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_X')" id="names_X">X
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_Y')" id="names_Y">Y
-        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_Z')" id="names_Z">Z
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_A')" id="names_A">A
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_B')" id="names_B">B
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_C')" id="names_C">C
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_D')" id="names_D">D
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_E')" id="names_E">E
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_F')" id="names_F">F
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_G')" id="names_G">G
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_H')" id="names_H">H
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_I')" id="names_I">I
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_J')" id="names_J">J
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_K')" id="names_K">K
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_L')" id="names_L">L
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_M')" id="names_M">M
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_N')" id="names_N">N
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_O')" id="names_O">O
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_P')" id="names_P">P
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Q')" id="names_Q">Q
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_R')" id="names_R">R
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_S')" id="names_S">S
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_T')" id="names_T">T
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_U')" id="names_U">U
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_V')" id="names_V">V
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_W')" id="names_W">W
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_X')" id="names_X">X
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Y')" id="names_Y">Y
+        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Z')" id="names_Z">Z
       </form>
 
       <div id="NameSearchResult"></div>
