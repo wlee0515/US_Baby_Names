@@ -7,9 +7,13 @@
     var gUSAPopulationDB = null;
     var gStateGeoGraphicInfoDB = null;
     var gHistoricalNameCountDB = null;
-    var gNameList = null;
+    
     var gWorkingName = ""
     var gWorkingNameDB = null;
+
+    var gNameList = null;
+    var gSortedNameList = null;
+
 
     function requestfile(iLocalFilePath, oCallback) {
       const Http = new XMLHttpRequest();
@@ -243,11 +247,22 @@
 
         requestfile("./db_generated/namelist.csv", function (iCSVString) {
           gNameList = parseCSVtoDataset(iCSVString);
+
+          gSortedNameList = {};
+          gSortedNameList["U"] = {"A":[], "B":[], "C":[], "D":[], "E":[], "F":[], "G":[], "H":[], "I":[], "J":[], "K":[], "L":[], "M":[], "N":[], "O":[], "P":[], "Q":[], "R":[], "S":[], "T":[], "U":[], "V":[], "W":[], "X":[], "Y":[], "Z":[]}
+          gSortedNameList["M"] = {"A":[], "B":[], "C":[], "D":[], "E":[], "F":[], "G":[], "H":[], "I":[], "J":[], "K":[], "L":[], "M":[], "N":[], "O":[], "P":[], "Q":[], "R":[], "S":[], "T":[], "U":[], "V":[], "W":[], "X":[], "Y":[], "Z":[]}
+          gSortedNameList["F"] = {"A":[], "B":[], "C":[], "D":[], "E":[], "F":[], "G":[], "H":[], "I":[], "J":[], "K":[], "L":[], "M":[], "N":[], "O":[], "P":[], "Q":[], "R":[], "S":[], "T":[], "U":[], "V":[], "W":[], "X":[], "Y":[], "Z":[]}
+
+          if (null != gSortedNameList) {
+            for(var i = 0; i < gNameList[0].mData.length; ++i){
+              var wFirstChar = gNameList[0].mData[i].charAt(0).toUpperCase();
+              gSortedNameList[gNameList[1].mData[i]][wFirstChar].push(gNameList[0].mData[i]);
+            }
+          }
         })
 
         getNameDatabase("Wilson");
 
-        gWorkingNameDB
       }
 
   </script>
@@ -255,23 +270,61 @@
 </head>
 <style>
   .content {
-    max-width: 1000px;
+    max-width: 800px;
     margin: auto;
     text-align: center
   }
 
   .displaychart{
-    height: 200px;
+    height: 250px;
     width: 100%;
   }
 </style>
 <body>
 
   <div class="content">
-    <textarea id="textDisplay"></textarea>
-    <div class="displaychart" id="PopulationChart"></div>
-
     <div>
+      <div class="displaychart" id="PopulationChart"></div>
+      <div class="displaychart" id="PopulationChartPerState"></div>
+      <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
+      <p>Move Slider to Change Year</p>
+    </div>
+    <div>
+      <h4>USA Name List</h4>
+      <form>
+        <input type="radio" name="name_filter_gender" id="male_names" onchange="genderFilterChange('male_names')">Male Names
+        <input type="radio" name="name_filter_gender" id="female_names" onchange="genderFilterChange('female_names')">>Female Names
+        <input type="radio" name="name_filter_gender" id="unisex_names" onchange="genderFilterChange('unisex_names')">>Unisex Names
+      </form>
+      <form>
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_A')" id="names_A">A
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_B')" id="names_B">B
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_C')" id="names_C">C
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_D')" id="names_D">D
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_E')" id="names_E">E
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_F')" id="names_F">F
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_G')" id="names_G">G
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_H')" id="names_H">H
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_I')" id="names_I">I
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_J')" id="names_J">J
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_K')" id="names_K">K
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_L')" id="names_L">L
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_M')" id="names_M">M
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_N')" id="names_N">N
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_O')" id="names_O">O
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_P')" id="names_P">P
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_Q')" id="names_Q">Q
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_R')" id="names_R">R
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_S')" id="names_S">S
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_T')" id="names_T">T
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_U')" id="names_U">U
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_V')" id="names_V">V
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_W')" id="names_W">W
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_X')" id="names_X">X
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_Y')" id="names_Y">Y
+        <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_Z')" id="names_Z">Z
+      </form>
+
       <div id="NameSearchResult"></div>
     </div>
     <div>
