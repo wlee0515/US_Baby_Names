@@ -4,8 +4,8 @@ from os import path
 
 class NameData:
     def __init__(self):
-        self.Sex = {}
-        self.Count = 0
+        self.MaleCount = 0
+        self.FemaleCount = 0
 
 class Population:
     def __init__(self):
@@ -64,18 +64,24 @@ class StateInfo:
 
     def setNameList(name, sex, count):
         wNameData = gNameList[name] = NameData()
-        wNameData.Count = count
-        wNameData.Sex[sex] = 1
+        if "M" == sex:
+            wNameData.MaleCount = count
+        if "F" == sex:
+            wNameData.FemaleCount = count
             
     def addToNameList(name, sex, count):
         if name not in gNameList:
             wNameData = gNameList[name] = NameData()
-            wNameData.Count = count
-            wNameData.Sex[sex] = 1
+            if "M" == sex:
+                wNameData.MaleCount = count
+            if "F" == sex:
+                wNameData.FemaleCount = count
         else:
             wNameData = gNameList[name]
-            wNameData.Count += count
-            wNameData.Sex[sex] = 1
+            if "M" == sex:
+                wNameData.MaleCount += count
+            if "F" == sex:
+                wNameData.FemaleCount += count
             
     def setTotalPopulation(year, population, malecount, femalecount, name=""):
         if year not in gTotalUSPopulation:
@@ -220,22 +226,26 @@ class StateInfo:
             wDataLine += "{0}".format("Name")
             wDataLine += ",{0}".format("Sex")
             wDataLine += ",{0}".format("Count")
+            wDataLine += ",{0}".format("MaleCount")
+            wDataLine += ",{0}".format("FemaleCount")
             wFileHandler.write("{0}\n".format(wDataLine))
             for wName in sorted(gNameList.keys()):
                 wData = gNameList[wName]
                 wDataLine = ""
                 wDataLine += "{0}".format(wName)
-                if "M" in wData.Sex:
-                    if "F" in wData.Sex:
-                        wDataLine += ",{0}".format("U")
-                    else:
-                        wDataLine += ",{0}".format("M")
+                if 0 == wData.MaleCount:
+                    wDataLine += "{0}".format("M")
                 else:
-                    if "F" in wData.Sex:
-                        wDataLine += ",{0}".format("F")
-                    else:
-                        wDataLine += ",{0}".format("NA")
-                wDataLine += ",{0}".format(wData.Count)
+                    wTest = wData.FemaleCount/wData.MaleCount;
+                    if (wTest > 0.3) & (wTest < 0.7):
+                        wDataLine += "{0}".format("U")
+                    elif wTest < 0.5:
+                        wDataLine += "{0}".format("M")
+                    else
+                        wDataLine += "{0}".format("F")
+                wDataLine += ",{0}".format(wData.MaleCount+wData.FemaleCount)
+                wDataLine += ",{0}".format(wData.MaleCount)
+                wDataLine += ",{0}".format(wData.FemaleCount)
                 wFileHandler.write("{0}\n".format(wDataLine))
         wFileHandler.close()
     
