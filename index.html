@@ -276,6 +276,18 @@
         }
       } 
       
+      function printTopTen(iDivContainerID, iList) {
+
+        wDOM = document.getElementById(iDivContainerID);
+        if (null != wDOM){
+          wDOM.innerHTML = "";
+
+          for(var i=0; i < iList.length; ++i){
+            wDOM.innerHTML +="<span class='selectableName' onclick=\"getNameDatabase('" + iList[i].name + "')\">" + (i+1).toString() + ". " + iList[i].name + " used " + iList[i].count +" times</span>";
+          }
+        }
+      }
+
 
       window.onload = function () {
         requestfile("./db_generated/USAPopulationSummary.csv", function (iCSVString) {
@@ -308,10 +320,55 @@
               }
             }
           }
+
+          wTopTenMale = [];
+          wTopTenFemale = [];
+          wTopTenUnisex = [];
+          
+          for(var i = 0; i < gNameList[0].mData.length; ++i){
+          
+            if((null != gNameList[0].mData[i])  && (null != gNameList[1].mData[i]) && (null != gNameList[2].mData[i]))
+            {
+              wList = null;
+              if ("M" == gNameList[1].mData[i]){
+                wList = wTopTenMale;
+              }
+              else if ("F" == gNameList[1].mData[i]){
+                wList = wTopTenFemale;
+              }
+              else if ("U" == gNameList[1].mData[i]){
+                wList = wTopTenUnisex;
+              }
+
+              if (10 < wList.length){
+                wList.push({name:gNameList[0].mData[i], count:parseInt(gNameList[2].mData[i])});
+              }
+              else {
+                for(var j = wList.length - 2; j >= 0; --j){
+                  wCount = parseInt(gNameList[2].mData[i]);
+
+                  if (wCount >= wList[j].count)
+                  {
+                    if (j+1 < wList.length){
+                      wList[j+1] = wList[j];
+                    }
+                    wList[j] = {name:gNameList[0].mData[i], count:parseInt(gNameList[2].mData[i])};
+                  }
+                  else{
+                    break;
+                  }
+                }
+              }
+            }
+          }
+
+          printTopTen("TopMaleNamesList", wTopTenMale);
+          printTopTen("TopFemaleNamesList", wTopTenFemale);
+          printTopTen("TopUnisexNamesList", wTopTenUnisex);
+
         })
 
         getNameDatabase("Wilson");
-
       }
 
   </script>
@@ -341,6 +398,10 @@
     display :inline-block;
     float:left;
   }
+
+  form{
+    padding:2px;
+  }
 </style>
 <body>
 
@@ -352,11 +413,11 @@
       <p>Move Slider to Change Year</p>
     </div>
     <div>
-      <h4>USA Name List</h4>
+      <h2>USA Name List</h2>
       <form>
         <input type="radio" name="name_filter_gender" id="male_names" onchange="genderFilterChange('male_names')">Male Names
-        <input type="radio" name="name_filter_gender" id="female_names" onchange="genderFilterChange('female_names')">>Female Names
-        <input type="radio" name="name_filter_gender" id="unisex_names" onchange="genderFilterChange('unisex_names')">>Unisex Names
+        <input type="radio" name="name_filter_gender" id="female_names" onchange="genderFilterChange('female_names')">Female Names
+        <input type="radio" name="name_filter_gender" id="unisex_names" onchange="genderFilterChange('unisex_names')">Unisex Names
       </form>
       <form>
         <input type="radio" name="name_filter_letter"  onchange="letterFilterChange('names_A')" id="names_A">A
@@ -394,6 +455,23 @@
       <div class="displaychart" id="NamePopulationChartPerState"></div>
       <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
       <p>Move Slider to Change Year</p>
+    </div>
+
+    <div>
+      <div class="ListColumn">
+        <h2>Top 10 USA Male Names</h2>
+        <div id="TopMaleNamesList"></div>
+      </div>
+
+      <div class="ListColumn">
+        <h2>Top 10 USA Female Names</h2>
+        <div id="TopFemaleNamesList"></div>
+      </div>
+
+      <div class="ListColumn">
+        <h2>Top 10 USA Unisex Names</h2>
+        <div id="TopUnisexNamesList"></div>
+      </div>
     </div>
   </div>
 </body>
