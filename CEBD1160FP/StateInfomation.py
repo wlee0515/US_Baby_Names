@@ -234,15 +234,15 @@ class StateInfo:
                 wDataLine = ""
                 wDataLine += "{0}".format(wName)
                 if 0 == wData.MaleCount:
-                    wDataLine += "{0}".format("M")
+                    wDataLine += ",{0}".format("M")
                 else:
                     wTest = wData.FemaleCount/wData.MaleCount;
                     if (wTest > 0.3) & (wTest < 0.7):
-                        wDataLine += "{0}".format("U")
+                        wDataLine += ",{0}".format("U")
                     elif wTest < 0.5:
-                        wDataLine += "{0}".format("M")
+                        wDataLine += ",{0}".format("M")
                     else:
-                        wDataLine += "{0}".format("F")
+                        wDataLine += ",{0}".format("F")
                 wDataLine += ",{0}".format(wData.MaleCount+wData.FemaleCount)
                 wDataLine += ",{0}".format(wData.MaleCount)
                 wDataLine += ",{0}".format(wData.FemaleCount)
