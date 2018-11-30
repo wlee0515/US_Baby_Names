@@ -301,8 +301,11 @@
 
           if (null != gSortedNameList) {
             for(var i = 0; i < gNameList[0].mData.length; ++i){
-              var wFirstChar = gNameList[0].mData[i].charAt(0).toUpperCase();
-              gSortedNameList[gNameList[1].mData[i]][wFirstChar].push(gNameList[0].mData[i]);
+              if(null !- gNameList[1].mData[i]) || (null !=gNameList[0].mData[i])
+              {
+                var wFirstChar = gNameList[0].mData[i].charAt(0).toUpperCase();
+                gSortedNameList[gNameList[1].mData[i]][wFirstChar].push(gNameList[0].mData[i]);
+              }
             }
           }
         })
