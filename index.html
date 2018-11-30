@@ -75,8 +75,8 @@
           wSliderDOM = document.getElementById("NameYearSelection");
 
           if (null != wSliderDOM){
-            wSliderDOM.min =  gWorkingNameDB[1].mData[1];
-            wSliderDOM.max =  gWorkingNameDB[1].mData[gWorkingNameDB[1].mData.length - 1];
+            wSliderDOM.min =  parseInt(gWorkingNameDB[1].mData[1]);
+            wSliderDOM.max =  parseInt(gWorkingNameDB[1].mData[gWorkingNameDB[1].mData.length - 1]);
             wSliderDOM.onchange = function () {
 
               wSliderDOM2 = document.getElementById("NameYearSelection");
@@ -303,6 +303,7 @@
           }
 
           wDOM.value = wNewValue;
+          wDOM.onchange()
         }
       }
 
