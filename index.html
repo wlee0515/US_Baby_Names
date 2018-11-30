@@ -73,14 +73,14 @@
             wSliderDOM.min =  gWorkingNameDB[1].mData[1];
             wSliderDOM.max =  gWorkingNameDB[1].mData[gWorkingNameDB[1].mData.length - 1];
             wSliderDOM.onchange = function () {
-            
+
               wSliderDOM2 = document.getElementById("NameYearSelection");
               if (null != wSliderDOM){
-              
+
                 wChart2 = createColumnChart("NamePopulationChartPerState", "Population Distribution of the name " + gWorkingName + " in " + wSliderDOM.value + " by State" , gWorkingNameDB, 1, [0,2], true, wSliderDOM.value.toString());
               }
             }
-            
+
             wSliderDOM.value = wSliderDOM.min;
             wChart2 = createColumnChart("NamePopulationChartPerState", "Population Distribution of the name " + gWorkingName + " in " + wSliderDOM.value, gWorkingNameDB, 1, [0,2], true, wSliderDOM.value.toString());
           }
@@ -205,7 +205,7 @@
           wDataSet.push( { y: parseInt(iDataset[i].mData[wDatasetIndex]), label: iDataset[i].mName});
         }
 
-        var wChart = new CanvasJS.Chart(iDivContainerID, 
+        var wChart = new CanvasJS.Chart(iDivContainerID,
         {
           title:{
             text: iTitle
@@ -213,11 +213,11 @@
           axisX:{
             interval: 1
           },
-          data: [{        
+          data: [{
             type: "column",
             name: "companies",
             dataPoints: wDataSet
-            }
+          }
           ]
         });
 
@@ -260,19 +260,20 @@
   }
 </style>
 <body>
-  <textarea id="textDisplay"></textarea>
-  <div id="PopulationChart" style="height: 370px; width: 100%;"></div>
 
-  <div>
+  <div class="content">
+    <textarea id="textDisplay"></textarea>
+    <div id="PopulationChart" style="height: 370px; width: 100%;"></div>
 
-    <div id="NameSearchResult" style="height: 500px; width: 100%;"></div>
+    <div>
+      <div id="NameSearchResult" style="height: 500px; width: 100%;"></div>
+    </div>
+    <div style="width: 95%;text-align: center">
+      <div id="NamePopulationChart" style="height: 150px; width: 100%;"></div>
+      <div id="NamePopulationChartPerState" style="height: 150px; width: 100%;"></div>
+      <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
+      <p>Move Slider to Change year</p>
+    </div>
   </div>
-  <div style="width: 95%;text-align: center">
-    <div id="NamePopulationChart" style="height: 150px; width: 100%;"></div>
-    <div id="NamePopulationChartPerState" style="height: 150px; width: 100%;"></div>
-    <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
-    <p>Move Slider to Change year</p>
-  </div>
-  
 </body>
 </html>
