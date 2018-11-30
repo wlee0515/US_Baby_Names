@@ -421,14 +421,41 @@
 <body>
 
   <div class="content">
+    <!--
     <div>
+      <h2>Name Distribution in USA</h2>
       <div class="displaychart" id="PopulationChart"></div>
       <div class="displaychart" id="PopulationChartPerState"></div>
       <input type="range" min="0" max="1" value="0" class="slider" id="StatePopulationYearSelection" style="width: 90%; height:20px;" />
       <p>Move Slider to Change Year</p>
     </div>
     <div>
-      <h2>USA Name List</h2>
+      <h2>Name Distribution in USA</h2>
+      <div class="displaychart" id="NamePopulationChart"></div>
+      <div class="displaychart" id="NamePopulationChartPerState"></div>
+      <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
+      <p>Move Slider to Change Year</p>
+    </div>
+    -->
+    <div>
+      <p>Click on below Names to see disctibution</p>
+      <div class="ListColumn">
+        <h3>Top 10 USA Male Names</h3>
+        <div id="TopMaleNamesList"></div>
+      </div>
+
+      <div class="ListColumn">
+        <h3>Top 10 USA Female Names</h3>
+        <div id="TopFemaleNamesList"></div>
+      </div>
+
+      <div class="ListColumn">
+        <h3>Top 10 USA Unisex Names</h3>
+        <div id="TopUnisexNamesList"></div>
+      </div>
+    </div>
+    <div>
+      <h3>USA Name List</h3>
       <form>
         <input type="radio" name="name_filter_gender" id="male_names" onchange="genderFilterChange('male_names')">Male Names
         <input type="radio" name="name_filter_gender" id="female_names" onchange="genderFilterChange('female_names')">Female Names
@@ -464,29 +491,6 @@
       </form>
 
       <div id="NameSearchResult"></div>
-    </div>
-    <div>
-      <div class="displaychart" id="NamePopulationChart"></div>
-      <div class="displaychart" id="NamePopulationChartPerState"></div>
-      <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
-      <p>Move Slider to Change Year</p>
-    </div>
-
-    <div>
-      <div class="ListColumn">
-        <h2>Top 10 USA Male Names</h2>
-        <div id="TopMaleNamesList"></div>
-      </div>
-
-      <div class="ListColumn">
-        <h2>Top 10 USA Female Names</h2>
-        <div id="TopFemaleNamesList"></div>
-      </div>
-
-      <div class="ListColumn">
-        <h2>Top 10 USA Unisex Names</h2>
-        <div id="TopUnisexNamesList"></div>
-      </div>
     </div>
   </div>
 </body>
