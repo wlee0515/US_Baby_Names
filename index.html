@@ -210,11 +210,16 @@
           title:{
             text: iTitle
           },
-          data: [
-
-                  {
-                    dataPoints: wDataSet
-                  }
+          
+          axisY: {
+            title: "Name Count"
+          },
+          data: [{        
+            type: "column",  
+            showInLegend: true, 
+            legendMarkerColor: "grey",
+            dataPoints: wDataSet
+            }
           ]
         });
 
