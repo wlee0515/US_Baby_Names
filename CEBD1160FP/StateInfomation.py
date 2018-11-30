@@ -241,7 +241,7 @@ class StateInfo:
                         wDataLine += "{0}".format("U")
                     elif wTest < 0.5:
                         wDataLine += "{0}".format("M")
-                    else
+                    else:
                         wDataLine += "{0}".format("F")
                 wDataLine += ",{0}".format(wData.MaleCount+wData.FemaleCount)
                 wDataLine += ",{0}".format(wData.MaleCount)
