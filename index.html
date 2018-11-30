@@ -82,6 +82,7 @@
             }
             
             wSliderDOM.value = wSliderDOM.min;
+            wChart2 = createColumnChart("NamePopulationChartPerState", "Population Distribution of the name " + gWorkingName + " in " + wSliderDOM.value, gWorkingNameDB, 1, [0,2], true, wSliderDOM.value.toString());
           }
         }
       })
@@ -257,9 +258,7 @@
     <div id="NameSearchResult" style="height: 500px; width: 100%;"></div>
   </div>
   <div id="NamePopulationChart" style="height: 150px; width: 100%;"></div>
-  <div class="slidecontainer">
-    <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection">
-  </div>
+    <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection"  width: 100%/>
   <div id="NamePopulationChartPerState" style="height: 150px; width: 100%;"></div>
 
 </body>
