@@ -261,23 +261,24 @@
   }
 
   .displaychart{
-
+    height: 200px;
+    width: 100%;
   }
 </style>
 <body>
 
   <div class="content">
     <textarea id="textDisplay"></textarea>
-    <div class="displaychart" id="PopulationChart" style="height: 370px; width: 100%;"></div>
+    <div class="displaychart" id="PopulationChart"></div>
 
     <div>
-      <div id="NameSearchResult" style="height: 500px; width: 100%;"></div>
+      <div id="NameSearchResult"></div>
     </div>
     <div>
-      <div class="displaychart" id="NamePopulationChart" style="height: 150px; width: 100%;"></div>
-      <div class="displaychart" id="NamePopulationChartPerState" style="height: 150px; width: 100%;"></div>
+      <div class="displaychart" id="NamePopulationChart"></div>
+      <div class="displaychart" id="NamePopulationChartPerState"></div>
       <input type="range" min="0" max="1" value="0" class="slider" id="NameYearSelection" style="width: 90%; height:20px;" />
-      <p>Move Slider to Change year</p>
+      <p>Move Slider to Change Year</p>
     </div>
   </div>
 </body>
