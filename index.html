@@ -77,12 +77,12 @@
               wSliderDOM2 = document.getElementById("NameYearSelection");
               if (null != wSliderDOM){
               
-                wChart2 = createColumnChart("NamePopulationChartPerState", "Population Distribution of the name " + gWorkingName + " in " + wSliderDOM.value, gWorkingNameDB, 1, [0,2], true, wSliderDOM.value.toString());
+                wChart2 = createColumnChart("NamePopulationChartPerState", "Population Distribution of the name " + gWorkingName + " in " + wSliderDOM.value + " by State" , gWorkingNameDB, 1, [0,2], true, wSliderDOM.value.toString());
               }
             }
             
             wSliderDOM.value = wSliderDOM.min;
-            wChart2 = createColumnChart("NamePopulationChartPerState", "Population Distribution of the name " + gWorkingName + " in " + wSliderDOM.value, gWorkingNameDB, 1, [0,2], true, wSliderDOM.value.toString());
+//            wChart2 = createColumnChart("NamePopulationChartPerState", "Population Distribution of the name " + gWorkingName + " in " + wSliderDOM.value, gWorkingNameDB, 1, [0,2], true, wSliderDOM.value.toString());
           }
         }
       })
