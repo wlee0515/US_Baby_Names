@@ -1,1 +1,1 @@
-from .StateInfomation import StateInfo
+from .NameInfoParser import NameInfoParser
