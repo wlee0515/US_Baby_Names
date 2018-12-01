@@ -578,7 +578,7 @@ class NameInfoParser:
                         # The overall US population with the name
                         wDataLine += ",{0}".format(wUSANameCount)
                         # Loop though all the states
-                        for wStateName, wStateInfo in gStateInformationDictionary.items():
+                        for wStateName, wStateInfo in self.StateInformationDictionary.items():
                             # Initialize state count to 0
                             wNameCountAtYearAtState = 0
                             # if year is in the current population table
