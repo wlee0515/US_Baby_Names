@@ -148,7 +148,7 @@ class NameInfoParser:
         # Is year already in TotalUSPopulation
         if year not in self.TotalUSPopulation:
             # if year not found, create new account
-            seld.TotalUSPopulation[year] = Population()
+            self.TotalUSPopulation[year] = Population()
         # get instance of the opject
         wPopulation = self.TotalUSPopulation[year]
         # add value to existing object
