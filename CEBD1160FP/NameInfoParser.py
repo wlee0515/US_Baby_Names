@@ -81,11 +81,11 @@ class NameInfoParser:
         self.StateInformationDictionary[name].Abbreviation = abbreviation
 
     # setter for state location
-    def setStateLocation(name, latitude, longitude):
+    def setStateLocation(self, name, latitude, longitude):
         # add new state name to dictionary
-        StateInfo.addStateName(name)
+        self.addStateName(name)
         # get reference
-        wState = gStateInformationDictionary[name]
+        wState = self.StateInformationDictionary[name]
         # set Latitude and Longitude value
         wState.Latitude = latitude
         wState.Longitude = longitude
