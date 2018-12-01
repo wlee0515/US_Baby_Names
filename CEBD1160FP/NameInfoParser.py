@@ -617,7 +617,7 @@ class NameInfoParser:
             # The USA Gran total column
             wDataLine += ",{0}".format("USA")
             # All state Abbreviation
-            for wStateName, wStateInfo in gStateInformationDictionary.items():
+            for wStateName, wStateInfo in self.StateInformationDictionary.items():
                 wDataLine += ",{0}".format(wStateInfo.Abbreviation)
             # Save data to file
             wFileHandler.write("{0}\n".format(wDataLine))
@@ -630,7 +630,7 @@ class NameInfoParser:
                 # print USA historical count
                 wDataLine += ",{0}".format(wHistoricalCount["USA"])
                 # print state historical count
-                for wStateName, wStateInfo in gStateInformationDictionary.items():
+                for wStateName, wStateInfo in self.StateInformationDictionary.items():
                     wDataLine += ",{0}".format(wHistoricalCount[wStateInfo.Abbreviation])
                 # save data to file
                 wFileHandler.write("{0}\n".format(wDataLine))
