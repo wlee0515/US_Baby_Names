@@ -274,6 +274,37 @@
         }
       }
       
+      function handleSearchInput() {
+        const searchBar = document.getElementById("nameSearchBar");
+        const searchValue = searchBar.value;
+
+        if ("" == searchValue) return;
+        
+        document.getElementById("nameOptions").innerHTML = "";
+        document.getElementById("NameSearchResult").innerHTML = "";
+
+        for(var i = 0; i < gNameList[0].mData.length; ++i){
+          if(null != gNameList[0].mData[i])
+          {
+            if (gNameList[0].mData[i].toLowerCase().includes(searchValue.toLowerCase())) {
+/*              const option = document.createElement("option");
+              option.value = gNameList[0].mData[i];
+              document.getElementById("nameOptions").appendChild(option);*/
+              
+              const option2 = document.createElement("div");
+              option2.innerText = gNameList[0].mData[i];
+              option2.onclick = function() {
+                getNameDatabase(option2.innerText);
+              };
+              document.getElementById("NameSearchResult").appendChild(option2);
+            }
+
+            /*if (gNameList[0].mData[i].toLowerCase() == searchValue.toLowerCase()) {
+              getNameDatabase(gNameList[0].mData[i]);
+            }*/
+          }
+        }
+      }
 
       window.onload = function () {
         
@@ -423,6 +454,18 @@
     width: 95%;
     vertical-align: middle;
   }
+
+  #NameSearchResult {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  #NameSearchResult div {
+    width: 25%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
 </style>
 <body>
 
@@ -442,6 +485,13 @@
     </div>
 
     <div class="NameSections">
+      <h3>Search for a Name</h3>
+      <input type="text" id="nameSearchBar" list="nameOptions" oninput="handleSearchInput()" placeholder="Type a name...">
+      <datalist id="nameOptions"></datalist>
+      <div id="NameSearchResult"></div>
+    </div>
+
+    <div class="NameSections">
       <p>Click on below Names to see distribution/p>
       <div class="ListColumn">
         <h3>Top 10 USA Male Names</h3>
@@ -457,46 +507,6 @@
         <h3>Top 10 USA Unisex Names</h3>
         <div id="TopUnisexNamesList"></div>
       </div>
-    </div>
-    <div class="NameSections">
-      <h3>USA Name List</h3>
-      <form>
-        <input type="radio" name="name_filter_gender" id="male_names" onchange="genderFilterChange('male_names')">Male Names
-        <input type="radio" name="name_filter_gender" id="female_names" onchange="genderFilterChange('female_names')">Female Names
-        <input type="radio" name="name_filter_gender" id="unisex_names" onchange="genderFilterChange('unisex_names')">Unisex Names
-      </form>
-      <form>
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_A')" id="names_A">A
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_B')" id="names_B">B
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_C')" id="names_C">C
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_D')" id="names_D">D
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_E')" id="names_E">E
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_F')" id="names_F">F
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_G')" id="names_G">G
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_H')" id="names_H">H
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_I')" id="names_I">I
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_J')" id="names_J">J
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_K')" id="names_K">K
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_L')" id="names_L">L
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_M')" id="names_M">M
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_N')" id="names_N">N
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_O')" id="names_O">O
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_P')" id="names_P">P
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Q')" id="names_Q">Q
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_R')" id="names_R">R
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_S')" id="names_S">S
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_T')" id="names_T">T
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_U')" id="names_U">U
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_V')" id="names_V">V
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_W')" id="names_W">W
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_X')" id="names_X">X
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Y')" id="names_Y">Y
-        <input type="radio" name="name_filter_letter" onchange="letterFilterChange('names_Z')" id="names_Z">Z
-      </form>
-      <form>
-        <input type="button" onclick="updateFiltered()" value="Go"/>
-      </form>
-      <div id="NameSearchResult"></div>
     </div>
   </div>
 </body>
